@@ -1,0 +1,130 @@
+.chat {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 1rem;
+}
+
+/* was empty — give it a tiny rule so linters are happy and layout is steadier */
+.chat__sidebar {
+  min-width: 240px;
+}
+
+.chat__threadList {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #fff;
+}
+
+.chat__threadBtn {
+  width: 100%;
+  text-align: left;
+  padding: var(--space-16);
+  border-bottom: 1px solid var(--color-border);
+  background: #fff;
+  cursor: pointer;
+}
+.chat__threadBtn.is-active {
+  background: #f8fafc;
+}
+.chat__threadTitle {
+  font-weight: 600;
+}
+.chat__threadLast {
+  font-size: var(--fs-12);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat__empty {
+  padding: var(--space-12);
+}
+
+.chat__panel {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 460px;
+  gap: var(--space-8);
+}
+
+.chat__header {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #f8fafc;
+  padding: var(--space-12);
+}
+
+.chat__headerTitle {
+  font-weight: 600;
+  font-size: var(--fs-18);
+}
+
+.chat__headerSubtitle {
+  margin-top: 4px;
+  font-size: var(--fs-13);
+}
+
+.chat__messages {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-12);
+  background: #fff;
+  overflow: auto;
+}
+
+.chat__bubbleRow {
+  margin-bottom: var(--space-8);
+  text-align: left;
+}
+.chat__bubbleRow.self {
+  text-align: right;
+}
+.chat__bubbleRow.adopter {
+  text-align: left;
+}
+.chat__bubbleRow.shelter {
+  text-align: left;
+}
+.chat__bubbleRow.system {
+  text-align: center;
+}
+.chat__bubble {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: #f3f4f6;
+}
+.chat__bubbleRow.adopter .chat__bubble {
+  background: #d1fae5;
+  border: 1px solid #6ee7b7;
+}
+.chat__bubbleRow.shelter .chat__bubble {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+}
+.chat__bubbleRow.system .chat__bubble {
+  background: #e0e7ff;
+  border: 1px solid #c7d2fe;
+  font-style: italic;
+}
+
+.chat__composer {
+  display: flex;
+  gap: var(--space-8);
+}
+
+.chat__composer input[type="text"],
+.chat__composer textarea {
+  flex: 1;
+  padding: var(--space-8);w
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-14);
+}
+
+.chat__composer button {
+  width: auto;
+  min-width: fit-content;
+  padding: var(--space-8);
+}

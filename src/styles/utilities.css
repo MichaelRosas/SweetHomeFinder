@@ -1,0 +1,201 @@
+/* Generic helpers */
+.text-left {
+  text-align: left;
+}
+.muted {
+  color: var(--color-muted);
+}
+.text-danger {
+  color: var(--color-danger);
+}
+.m-0 {
+  margin: 0;
+}
+.mb-4 {
+  margin-bottom: var(--space-4);
+}
+.mb-8 {
+  margin-bottom: var(--space-8);
+}
+.mb-10 {
+  margin-bottom: var(--space-10);
+}
+.mb-12 {
+  margin-bottom: var(--space-12);
+}
+.mb-16 {
+  margin-bottom: var(--space-16);
+}
+.mt-8 {
+  margin-top: var(--space-8);
+}
+.mt-16 {
+  margin-top: var(--space-16);
+}
+.pad-24 {
+  padding: var(--space-24);
+}
+.fs-12 {
+  font-size: var(--fs-12);
+}
+.fs-18 {
+  font-size: var(--fs-18);
+}
+.wrap {
+  flex-wrap: wrap;
+}
+.flex-1 {
+  flex: 1;
+}
+.min-240 {
+  min-width: 240px;
+}
+
+/* Layout clusters and stacks */
+.cluster-8 {
+  display: flex;
+  gap: var(--space-8);
+}
+.cluster-8 .auth-button {
+  flex: 1 1 0;
+  width: auto;
+  margin-top: 0;
+}
+.cluster-12 {
+  display: flex;
+  gap: var(--space-12);
+}
+.stack-12 > * + * {
+  margin-top: var(--space-12);
+}
+.stack-14 > * + * {
+  margin-top: var(--space-14);
+}
+.stack-16 > * + * {
+  margin-top: var(--space-16);
+}
+.row-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-8);
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-12);
+}
+
+.max-720 {
+  max-width: 720px;
+}
+.max-1100 {
+  max-width: 1100px;
+}
+
+/* Card */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-16);
+}
+
+/* Remove outer wrapper card styling, but keep pet-card styling */
+.cards-grid > .card:not(.pet-card) {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+.card--compact {
+  padding: var(--space-12);
+}
+.card--wide {
+  max-width: 1000px;
+  width: 100%;
+}
+
+/* Badges */
+.badge {
+  font-size: var(--fs-12);
+  color: var(--color-muted);
+}
+.badge--danger {
+  color: var(--color-danger);
+}
+
+/* Buttons / inputs — keep existing .auth-button name for minimal code churn */
+.auth-button {
+  padding: 0.85rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.05s ease;
+}
+.auth-button:hover {
+  background: var(--color-primary-hover);
+}
+.auth-button:active {
+  transform: translateY(1px);
+}
+.auth-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-button--secondary {
+  background: var(--color-secondary);
+}
+.auth-button--danger {
+  background: var(--color-danger);
+}
+
+.input,
+.select {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: #fff;
+  font-size: 1rem;
+}
+.input--pill {
+  border-radius: var(--radius-md);
+}
+
+/* Lists */
+.list-default {
+  margin: 0;
+  padding-left: 16px;
+}
+
+/* Focus visibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid #94a3b8;
+  outline-offset: 2px;
+}
+
+/* Reusable page helpers */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  width: 100%;
+}

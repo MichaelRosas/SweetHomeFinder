@@ -1,0 +1,130 @@
+/* Container */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  width: 100%;
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Left (brand/back) */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+.brand-icon {
+  font-size: 1.8rem;
+}
+.brand-text {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #e74c3c;
+  letter-spacing: -0.25px;
+}
+
+/* Center (links or custom) */
+.nav-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Right (actions) */
+.nav-right {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Buttons/links */
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: fit-content;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.02s ease;
+}
+
+.nav-btn.link {
+  background: transparent;
+  color: #2c3e50;
+}
+.nav-btn.link:hover {
+  background: #f6f7f9;
+  color: #e74c3c;
+}
+
+.nav-btn.solid {
+  background: #e74c3c;
+  color: #ffffff;
+  border-color: #e74c3c;
+}
+.nav-btn.solid:hover {
+  background: #c0392b;
+  border-color: #c0392b;
+}
+.nav-btn:active {
+  transform: translateY(1px);
+}
+
+/* Back link in auth variant (left column) */
+.back-link {
+  color: #5a6c7d;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+}
+.back-link:hover {
+  color: #e74c3c;
+  background: #f6f7f9;
+}
+
+/* Small screens */
+@media (max-width: 768px) {
+  .nav-inner {
+    grid-template-columns: auto 1fr auto;
+    padding: 0.65rem 0.75rem;
+  }
+  .nav-links {
+    display: none; /* hide non-essential center links on small screens */
+  }
+}

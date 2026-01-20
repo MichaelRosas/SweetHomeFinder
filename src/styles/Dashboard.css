@@ -1,0 +1,378 @@
+/* ── Hero header ─────────────────────────────────────────── */
+.hero {
+  display: grid;
+  gap: var(--space-12);
+  margin-bottom: var(--space-16);
+}
+.hero__text {
+  display: grid;
+  gap: var(--space-6);
+}
+.hero__title {
+  margin: 0;
+  font-size: var(--fs-28, 28px);
+  line-height: 1.25;
+}
+.hero__subtitle {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: var(--fs-16, 16px);
+}
+.hero__actions {
+  display: flex;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+@media (min-width: 720px) {
+  .hero {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+}
+
+/* ── Buttons (local, neutral) ───────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-md, 10px);
+  border: 1px solid var(--color-primary);
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover {
+  filter: brightness(0.9);
+  color: #fff;
+  text-decoration: none;
+}
+.btn--secondary {
+  background: #667085;
+  border-color: #667085;
+}
+.btn--secondary:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Comfortable spacing between dashboard sections */
+.section {
+  margin-top: 0;
+  margin-bottom: var(--space-16);
+}
+
+.section + .section {
+  margin-top: var(--space-24);
+}
+
+/* Align action buttons in recent applications tables */
+.table .cell--actions .cluster-8 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: var(--space-8);
+}
+
+/* ── Section headers / titles ───────────────────────────── */
+.section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-8);
+}
+.section__title {
+  margin: 0;
+  font-size: var(--fs-18);
+}
+
+/* ── Stats grid & cards ─────────────────────────────────── */
+.stats-grid {
+  display: grid;
+  gap: var(--space-16);
+}
+@media (min-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.stat {
+  padding: var(--space-16);
+}
+.stat__label {
+  font-size: var(--fs-12);
+  margin-bottom: var(--space-6);
+  color: var(--color-muted);
+}
+.stat__value {
+  font-size: var(--fs-24, 24px);
+  font-weight: 700;
+}
+
+/* ── Cards grid for PetSummaryCard ──────────────────────── */
+.cards-grid {
+  display: grid;
+  gap: var(--space-16);
+}
+@media (min-width: 768px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+/* ── Generic dashboard grid (legacy sections) ───────────── */
+.dashboard-grid {
+  display: grid;
+  gap: var(--space-16);
+}
+@media (min-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+/* ── Table layout used for Applications lists ───────────── */
+.table {
+  display: grid;
+  gap: var(--space-8);
+}
+.table__head {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr;
+  gap: var(--space-12);
+  padding: 0 var(--space-8);
+  color: var(--color-muted);
+  font-size: var(--fs-16, 16px); 
+}
+.table__body {
+  display: grid;
+  gap: var(--space-12);
+}
+.table__row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr;
+  gap: var(--space-12);
+  padding: var(--space-12) var(--space-16);
+  align-items: center;
+  font-size: var(--fs-20, 18px);
+}
+.cell--actions {
+  justify-self: end;
+}
+.cell-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Responsive: stack table to cards on small screens */
+@media (max-width: 680px) {
+  .table__head {
+    display: none;
+  }
+  .table__row {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  .cell--actions {
+    justify-self: start;
+  }
+}
+
+/* ── Empty state ────────────────────────────────────────── */
+.empty {
+  text-align: left;
+  padding: var(--space-16);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md, 12px);
+  background: #fff;
+}
+.empty__title {
+  margin: 0 0 var(--space-6);
+  font-size: var(--fs-16);
+}
+.empty__body {
+  margin: 0 0 var(--space-12);
+  color: var(--color-muted);
+}
+.empty__actions {
+  display: flex;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+/* ── Skeletons ──────────────────────────────────────────── */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+}
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  transform: translateX(-100%);
+  animation: shimmer 1.3s infinite;
+  pointer-events: none;
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton__thumb {
+  height: 140px;
+  background: #f1f5f9;
+  border-radius: var(--radius-sm, 8px);
+  margin-bottom: var(--space-12);
+}
+.skeleton__line {
+  height: 12px;
+  border-radius: 6px;
+  background: #eef2f7;
+  margin-bottom: 10px;
+}
+.skeleton__line--short {
+  width: 40%;
+}
+
+/* row-style skeleton */
+.skeleton--row {
+  padding: var(--space-16);
+}
+.skeleton--row .skeleton__line {
+  height: 14px;
+}
+
+/* ── Chips / badges for statuses ───────────────────────── */
+.chip {
+  display: inline-block;
+  padding: 0 var(--space-8);
+  line-height: 1.8;
+  border-radius: 999px;
+  font-size: var(--fs-14, 14px) !important;
+  font-weight: 700;
+  background: #eef2f7;
+  color: #334155;
+}
+.chip--submitted {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+.chip--approved {
+  background: #dcfce7;
+  color: #166534;
+}
+.chip--closed,
+.chip--rejected {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* ── Cards & utilities (fallbacks if not global) ───────── */
+.card {
+  background: #fff;
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: var(--radius-md, 12px);
+  box-shadow: var(--shadow-1, 0 1px 2px rgba(0, 0, 0, 0.04));
+}
+
+/* Remove outer wrapper card styling, but keep pet-card styling */
+.cards-grid > .card:not(.pet-card) {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+.row-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-8);
+}
+.stack-12 > * + * {
+  margin-top: var(--space-12);
+}
+.cluster-8 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+.wrap {
+  flex-wrap: wrap;
+}
+.fs-12 {
+  font-size: var(--fs-12);
+}
+
+/* Keep previous app-row spacing for compatibility */
+.app-row {
+  padding: var(--space-12) var(--space-16);
+}
+
+/* Links */
+.link-muted {
+  color: var(--color-muted);
+  text-decoration: none;
+}
+.link-muted:hover {
+  text-decoration: underline;
+}
+
+/* ── Match Score Display ────────────────────────────────── */
+.match-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-12);
+  border-radius: var(--radius-md, 10px);
+  color: #fff;
+  min-width: 70px;
+}
+
+/* Color-coded match scores based on percentage */
+.match-score--excellent {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+}
+
+.match-score--good {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+}
+
+.match-score--fair {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+}
+
+.match-score--poor {
+  background: var(--color-error-bg, #fee2e2);
+  color: var(--color-error-text, #991b1b);
+}
+
+.match-score__value {
+  font-size: var(--fs-20, 20px);
+  font-weight: 700;
+  line-height: 1;
+}
+.match-score__label {
+  font-size: var(--fs-11, 11px);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+  opacity: 0.9;
+}

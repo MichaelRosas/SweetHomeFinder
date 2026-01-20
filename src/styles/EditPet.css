@@ -1,0 +1,9 @@
+/* container width helpers for edit page come from utilities (max-720) */
+
+.media-url-list input {
+  margin-bottom: 0.5rem;
+}
+
+.media-url-list .auth-button {
+  width: fit-content;
+}

@@ -1,0 +1,250 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function userDoc(uid) {
+      return get(/databases/$(database)/documents/users/$(uid));
+    }
+
+    function roleOf(uid) {
+      return userDoc(uid).data.role;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && roleOf(request.auth.uid) == 'admin';
+    }
+
+    function isShelter() {
+      return isSignedIn() && roleOf(request.auth.uid) == 'shelter';
+    }
+
+    function isAdopter() {
+      return isSignedIn() && roleOf(request.auth.uid) == 'adopter';
+    }
+
+    function allowsOnlyKeys(allowedKeys) {
+      return request.resource.data.keys().hasOnly(allowedKeys);
+    }
+
+    function threadDoc(threadId) {
+      return get(/databases/$(database)/documents/threads/$(threadId));
+    }
+
+    function isThreadParticipant(threadId) {
+      return isSignedIn() && (
+        threadDoc(threadId).data.adopterId == request.auth.uid ||
+        threadDoc(threadId).data.shelterId == request.auth.uid ||
+        isAdmin()
+      );
+    }
+
+    match /users/{uid} {
+      // Users can read their own profile, admins can read all
+      // Shelters can read applicant profiles (for preference-based ranking)
+      allow read: if isSignedIn() && (
+        request.auth.uid == uid ||
+        isAdmin() ||
+        isShelter()  // Shelters can read user preferences for applicant matching
+      );
+
+      allow create, update: if isSignedIn()
+        && (request.auth.uid == uid || isAdmin())
+        && allowsOnlyKeys([
+          'email',
+          'role',
+          'displayName',
+          'joinedOn',
+          'preferences',
+          'adopterProfile',
+          'shelterProfile',
+          'needsOnboarding',
+          'updatedAt'
+        ]);
+
+      allow delete: if isAdmin();
+    }
+
+    match /pets/{petId} {
+      allow read: if true;
+
+      allow create: if isSignedIn()
+        && (isShelter() || isAdmin())
+        && allowsOnlyKeys([
+          'name',
+          'species',
+          'animalType',
+          'breed',
+          'size',
+          'ageRange',
+          'gender',
+          'color',
+          'temperament',
+          'photoUrls',
+          'medicalUrls',
+          'status',
+          'shelterId',
+          'shelterName',
+          'shelterAddress',
+          'description',
+          'createdAt',
+          'updatedAt'
+        ])
+        && (
+          isAdmin() ||
+          request.resource.data.shelterId == request.auth.uid
+        );
+
+      allow update: if isSignedIn()
+        && allowsOnlyKeys([
+          'name',
+          'species',
+          'animalType',
+          'breed',
+          'size',
+          'ageRange',
+          'gender',
+          'color',
+          'temperament',
+          'photoUrls',
+          'medicalUrls',
+          'status',
+          'shelterId',
+          'shelterName',
+          'shelterAddress',
+          'description',
+          'createdAt',
+          'updatedAt'
+        ])
+        && (
+          isAdmin() ||
+          (
+            isShelter() &&
+            resource.data.shelterId == request.auth.uid &&
+            request.resource.data.shelterId == resource.data.shelterId
+          )
+        );
+
+      allow delete: if isAdmin() ||
+        (isShelter() && resource.data.shelterId == request.auth.uid);
+    }
+
+    match /applications/{appId} {
+      allow read: if isSignedIn() && (
+        resource.data.applicantId == request.auth.uid ||
+        resource.data.shelterId == request.auth.uid ||
+        isAdmin()
+      );
+
+      allow create: if isSignedIn() && isAdopter()
+        && allowsOnlyKeys([
+          'petId',
+          'petName',
+          'shelterId',
+          'shelterName',
+          'applicantId',
+          'applicantEmail',
+          'applicantName',
+          'status',
+          'createdAt'
+        ])
+        && request.resource.data.applicantId == request.auth.uid
+        && request.resource.data.status == 'submitted'
+        && request.resource.data.petId is string
+        && request.resource.data.shelterId ==
+           get(/databases/$(database)/documents/pets/$(request.resource.data.petId)).data.shelterId;
+
+      allow update: if isSignedIn()
+        && allowsOnlyKeys([
+          'petId',
+          'petName',
+          'shelterId',
+          'shelterName',
+          'applicantId',
+          'applicantEmail',
+          'applicantName',
+          'status',
+          'createdAt'
+        ])
+        && (
+          isAdmin() ||
+          resource.data.shelterId == request.auth.uid
+        )
+        && request.resource.data.petId == resource.data.petId
+        && request.resource.data.shelterId == resource.data.shelterId
+        && request.resource.data.applicantId == resource.data.applicantId
+        && (request.resource.data.status in ['submitted', 'approved', 'rejected', 'closed']);
+
+      allow delete: if isAdmin();
+    }
+
+    match /threads/{threadId} {
+      function isParticipantThreadLevel() {
+        return isSignedIn() && (
+          resource.data.adopterId == request.auth.uid ||
+          resource.data.shelterId == request.auth.uid ||
+          isAdmin()
+        );
+      }
+
+      allow create: if isSignedIn()
+        && allowsOnlyKeys([
+          'id',
+          'petId',
+          'petName',
+          'adopterId',
+          'shelterId',
+          'adopterName',
+          'shelterName',
+          'lastMessage',
+          'lastMessageAt',
+          'lastSenderId',
+          'adoptionClosed',
+          'adoptionClosedAt',
+          'adoptionReopenedAt'
+        ])
+        && (
+          request.auth.uid == request.resource.data.adopterId ||
+          request.auth.uid == request.resource.data.shelterId ||
+          isAdmin()
+        );
+
+      allow read: if isParticipantThreadLevel();
+
+      allow update: if isParticipantThreadLevel()
+        && allowsOnlyKeys([
+          'id',
+          'petId',
+          'petName',
+          'adopterId',
+          'shelterId',
+          'adopterName',
+          'shelterName',
+          'lastMessage',
+          'lastMessageAt',
+          'lastSenderId',
+          'adoptionClosed',
+          'adoptionClosedAt',
+          'adoptionReopenedAt'
+        ])
+        && request.resource.data.petId == resource.data.petId
+        && request.resource.data.adopterId == resource.data.adopterId
+        && request.resource.data.shelterId == resource.data.shelterId;
+
+      allow delete: if isAdmin();
+
+      match /messages/{messageId} {
+        allow read: if isThreadParticipant(threadId);
+
+        allow create: if isThreadParticipant(threadId)
+          && allowsOnlyKeys(['text', 'senderId', 'createdAt'])
+          && (request.resource.data.senderId == request.auth.uid || request.resource.data.senderId == 'system');
+
+        allow update, delete: if false;
+      }
+    }
+  }
+}

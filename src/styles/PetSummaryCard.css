@@ -1,0 +1,201 @@
+.pet-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+.pet-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.pet-card__image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+}
+
+.pet-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0; /* Allows flex items to shrink */
+}
+
+.pet-card__name {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+  color: #007bff;
+}
+
+.pet-card__details {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.pet-card__description {
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pet-card__line.muted {
+  margin-bottom: 0.6rem;
+}
+
+.pet-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.pet-card__actions button {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  min-width: 100px;
+}
+
+.pet-card__shelter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: right;
+  font-size: 0.85rem;
+  min-width: 160px;
+}
+
+.pet-card__shelterLabel {
+  color: #666;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pet-card__shelterName {
+  color: #007bff;
+  font-weight: 600;
+}
+
+.pet-card__shelterAddr {
+  color: #666;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.pet-card__shelterUnavailable {
+  color: #999;
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+.pet-card__match {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  color: #fff;
+}
+
+/* Color-coded match badges based on percentage */
+.pet-card__match--excellent {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+}
+
+.pet-card__match--good {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+}
+
+.pet-card__match--fair {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+}
+
+.pet-card__match--poor {
+  background: var(--color-error-bg, #fee2e2);
+  color: var(--color-error-text, #991b1b);
+}
+
+.pet-card__matchLabel {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.pet-card__matchValue {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.pet-card__match strong {
+  color: inherit;
+  font-size: 1.1rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .pet-card {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    text-align: left;
+  }
+
+  .pet-card__image {
+    width: 100%;
+    height: 200px;
+    justify-self: center;
+    max-width: 300px;
+  }
+
+  .pet-card__shelter {
+    text-align: left;
+    min-width: auto;
+  }
+
+  .pet-card__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .pet-card__actions button {
+    flex: 1;
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pet-card {
+    padding: 1rem;
+  }
+
+  .pet-card__actions {
+    flex-direction: column;
+  }
+
+  .pet-card__actions button {
+    width: 100%;
+  }
+}

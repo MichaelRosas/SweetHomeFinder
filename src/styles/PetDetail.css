@@ -1,0 +1,215 @@
+/* Override Auth.css grid and force vertical stacking */
+.auth-card.pet-detail {
+  max-width: 1100px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  grid-template-columns: none !important;
+  gap: 0 !important;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Additional specificity for pet-detail container */
+.pet-detail {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Info section at the top - full width row */
+.pet-detail__info {
+  width: 100%;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+  display: block;
+}
+
+/* Actions + status row */
+.pet-detail__actions {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* Primary actions (Open chat, View application, Apply, etc.) */
+.pet-detail__actionsPrimary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: stretch;
+  min-width: 250px;
+  max-width: 300px;
+}
+
+/* Make all buttons in the primary group same width */
+.pet-detail__actionsPrimary .auth-button,
+.pet-detail__actionsPrimary .auth-button--secondary {
+  width: 100%;
+  text-align: center;
+}
+
+.pet-detail__status {
+  font-size: 0.9rem;
+}
+
+/* Section containers (Photos and Medical Records) - full width rows */
+.pet-detail__section {
+  width: 100%;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.pet-detail__sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1f2937;
+  display: block;
+}
+
+/* Horizontal scroll container */
+.pet-detail__scrollContainer {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar for cleaner look but keep functionality */
+.pet-detail__scrollContainer::-webkit-scrollbar {
+  height: 8px;
+}
+
+.pet-detail__scrollContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.pet-detail__scrollContainer::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.pet-detail__scrollContainer::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Images in scroll container */
+.pet-detail__scrollImage {
+  flex-shrink: 0;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  scroll-snap-align: start;
+  border: 1px solid #e5e7eb;
+}
+
+/* Medical record card link */
+.pet-detail__medicalLink {
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+/* Medical record card */
+.pet-detail__medicalCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 200px;
+  height: 200px;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: var(--radius-md);
+  color: white;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.pet-detail__medicalCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.pet-detail__medicalIcon {
+  width: 48px;
+  height: 48px;
+}
+
+.pet-detail__medicalText {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Responsive: adjust image size on smaller screens */
+@media (max-width: 768px) {
+  .pet-detail {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pet-detail__scrollImage {
+    width: 250px;
+    height: 250px;
+  }
+
+  .pet-detail__medicalCard {
+    width: 160px;
+    height: 160px;
+  }
+
+  .pet-detail__medicalIcon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .pet-detail__actions {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .pet-detail__actionsPrimary {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .pet-detail {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pet-detail__scrollImage {
+    width: 200px;
+    height: 200px;
+  }
+
+  .pet-detail__medicalCard {
+    width: 140px;
+    height: 140px;
+  }
+
+  .pet-detail__sectionTitle {
+    font-size: 1.25rem;
+  }
+
+  .pet-detail__actionsPrimary {
+    max-width: 100%;
+    width: 100%;
+  }
+}

@@ -1,0 +1,92 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Light mode default */
+  color: #213547;
+  background-color: #ffffff;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #ffffff;
+  color: #213547;
+  min-height: 100vh;
+}
+
+/* Links */
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: none;
+}
+a:hover {
+  color: #535bf2;
+}
+
+/* Headings & text */
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0.5rem 0;
+}
+p {
+  color: #5a6c7d;
+  line-height: 1.6;
+  margin: 0.5rem 0 1rem;
+}
+
+/* Generic container helper (optional) */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  width: 100%;
+}
+
+/* Buttons (base style; pages can override color) */
+button {
+  border-radius: 6px;
+  border: 1px solid transparent;
+  padding: 0.65rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  background-color: #f3f4f6;
+  color: #213547;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+button:hover {
+  background-color: #e5e7eb;
+}
+button:focus-visible {
+  outline: 3px auto -webkit-focus-ring-color;
+}
+
+/* Remove Vite template-specific centering/spinners */
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: initial;
+}
