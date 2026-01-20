@@ -85,7 +85,7 @@ src/
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/SweetHomeFinder.git
+git clone https://github.com/MichaelRosas/SweetHomeFinder.git
 cd SweetHomeFinder
 ```
 
