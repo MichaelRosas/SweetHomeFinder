@@ -141,7 +141,3 @@ Configure Firestore security rules in `firestore.rules` to ensure:
 - Shelters can create/edit their own pet listings
 - Applications are visible to both parties
 - Chat messages are only accessible to participants
-
----
-
-Built with ❤️ to help pets find their forever homes
