@@ -1,12 +1,12 @@
-# 🏠 SweetHomeFinder
+# SweetHomeFinder
 
 A full-stack web application that connects adoptable pets with their perfect homes through intelligent matching algorithms and real-time communication features.
 
-## 📋 Overview
+## Overview
 
 SweetHomeFinder is a comprehensive pet adoption platform that streamlines the adoption process for both shelters and potential adopters. The application uses a smart matching algorithm to pair pets with adopters based on preferences, personality traits, and lifestyle compatibility.
 
-## ✨ Key Features
+## Key Features
 
 ### For Adopters
 - **Smart Pet Matching**: Take a detailed quiz to find pets that match your lifestyle and preferences
@@ -33,7 +33,7 @@ SweetHomeFinder is a comprehensive pet adoption platform that streamlines the ad
 - **Real-time Updates**: Live data synchronization using Firebase Firestore
 - **External API Integration**: Integration with PetFinder API for breed data and resources
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - **React 19** - Modern UI library with hooks
@@ -53,7 +53,7 @@ SweetHomeFinder is a comprehensive pet adoption platform that streamlines the ad
 - **Husky** - Git hooks for pre-commit linting
 - **lint-staged** - Run linters on staged files
 
-## 🏗️ Project Architecture
+## Project Architecture
 
 ```
 src/
@@ -73,7 +73,7 @@ src/
 - **Chat System** (`utils/Threads.js`): Real-time messaging between adopters and shelters
 - **Pet Quiz**: Multi-step form with dynamic breed loading based on animal type
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -111,7 +111,7 @@ npm run dev
 
 The application will be available at `http://localhost:5173`
 
-## 📝 Available Scripts
+## Available Scripts
 
 ```bash
 npm run dev          # Start development server
@@ -122,7 +122,7 @@ npm run lint:fix     # Fix linting issues
 npm run format       # Format code with Prettier
 ```
 
-## 🔐 Firebase Setup
+## Firebase Setup
 
 ### Firestore Collections
 
